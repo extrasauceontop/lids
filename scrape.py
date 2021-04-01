@@ -49,7 +49,7 @@ def fetch_data():
     ]
     for url in urls:
         r = session.get(url, headers=headers)
-        print(r)
+        print(r.content)
         for item in json.loads(r.content):
             store = item["storeId"]
             name = item["name"]
