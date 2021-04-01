@@ -1,6 +1,9 @@
 import csv
 from sgrequests import SgRequests
 import json
+from sglogging import sglog
+
+log = sglog.SgLogSetup().get_logger(logger_name="logger")
 
 session = SgRequests()
 headers = {
@@ -46,7 +49,7 @@ def fetch_data():
     ]
     for url in urls:
         r = session.get(url, headers=headers)
-        print(r)
+        log.info(r)
         for item in json.loads(r.content):
             store = item["storeId"]
             name = item["name"]
