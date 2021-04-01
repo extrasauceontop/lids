@@ -45,9 +45,9 @@ def fetch_data():
         "https://www.lids.com/api/data/v2/stores/514599?lat=35&long=-120&num=1000&shipToStore=false",
     ]
     for url in urls:
-        r = session.get(url, headers=headers).json()
+        r = session.get(url, headers=headers)
         print(r)
-        for item in r:
+        for item in json.loads(r.content):
             store = item["storeId"]
             name = item["name"]
             add = item["address"]["addressLine1"]
