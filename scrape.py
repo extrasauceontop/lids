@@ -46,7 +46,7 @@ def fetch_data():
     ]
     for url in urls:
         r = session.get(url, headers=headers).json()
-        # print(r)
+        print(r)
         for item in r:
             store = item["storeId"]
             name = item["name"]
