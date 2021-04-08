@@ -2,7 +2,6 @@ import csv
 from sgrequests import SgRequests
 import json
 
-session = SgRequests()
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36", "accept": "application/json", "referer": "lids.com"
 }
@@ -44,21 +43,30 @@ def fetch_data():
         "https://www.lids.com/api/data/v2/stores/514599?lat=45&long=-115&num=1000&shipToStore=false",
         "https://www.lids.com/api/data/v2/stores/514599?lat=35&long=-120&num=1000&shipToStore=false",
     ]
-    for url in urls:
-        x = 0
-        while True:
-            
-            try:
-                r = session.get(url, headers=headers)
-                items = json.loads(r.content)
-                break
-            except Exception:
-                print(url)
-                print(r.content)
-                pass
-            x = x+1
-            if x == 100:
-                break
+
+    while True:
+        session = SgRequests()
+        y = 0
+        for url in urls:
+            x = 0
+            while True:
+                
+                try:
+                    r = session.get(url, headers=headers)
+                    items = json.loads(r.content)
+                    break
+                except Exception:
+                    print(url)
+                    print(r.content)
+                    pass
+                x = x+1
+                if x == 10:
+                    break
+        
+            y = y+1
+        if y == len(urls):
+            break
+        
         for item in items:
             store = item["storeId"]
             name = item["name"]
