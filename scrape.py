@@ -5,7 +5,7 @@ import json
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36", "accept": "application/json", "referer": "lids.com"
 }
-
+session = SgRequests()
 
 def write_output(data):
     with open("data.csv", mode="w") as output_file:
@@ -52,10 +52,13 @@ def fetch_data():
                 items = json.loads(r.content)
                 break
             except Exception:
-                session = SgRequests()
+
+                print(url)
+                print(r.content)
                 pass
             x = x+1
             if x == 10:
+                print("broken")
                 print(url)
                 print(r.content)
                 break
