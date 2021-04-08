@@ -44,27 +44,19 @@ def fetch_data():
         "https://www.lids.com/api/data/v2/stores/514599?lat=35&long=-120&num=1000&shipToStore=false",
     ]
 
-    while True:
-        session = SgRequests()
-        y = 0
-
-        url = urls[y]
-        x = 0
-        while True:
+    for url in urls:
             
-            try:
-                r = session.get(url, headers=headers)
-                items = json.loads(r.content)
-                y = y+1
-                break
-            except Exception:
-                pass
-            x = x+1
-            if x == 10:
-                print(url)
-                break
-        
-        if y == len(urls):
+        try:
+            r = session.get(url, headers=headers)
+            items = json.loads(r.content)
+            y = y+1
+            break
+        except Exception:
+            session = SgRequests()
+            pass
+        x = x+1
+        if x == 10:
+            print(url)
             break
         
         for item in items:
