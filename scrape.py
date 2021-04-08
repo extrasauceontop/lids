@@ -52,7 +52,6 @@ def fetch_data():
                 break
             except Exception:
                 pass
-        
         for item in items:
             store = item["storeId"]
             name = item["name"]
