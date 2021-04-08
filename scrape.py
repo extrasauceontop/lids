@@ -53,6 +53,7 @@ def fetch_data():
                 items = json.loads(r.content)
                 break
             except Exception:
+                print(url)
                 print(r.content)
                 pass
             x = x+1
