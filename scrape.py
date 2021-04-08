@@ -35,6 +35,7 @@ def write_output(data):
 
 
 def fetch_data():
+    session.get("https://www.lids.com")
     ids = []
     urls = [
         "https://www.lids.com/api/data/v2/stores/514599?lat=40&long=-80&num=1000&shipToStore=false",
