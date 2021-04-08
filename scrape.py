@@ -45,19 +45,19 @@ def fetch_data():
     ]
 
     for url in urls:
-            
-        try:
-            r = session.get(url, headers=headers)
-            items = json.loads(r.content)
-            y = y+1
-            break
-        except Exception:
-            session = SgRequests()
-            pass
-        x = x+1
-        if x == 10:
-            print(url)
-            break
+        x = 0
+        while True:
+            try:
+                r = session.get(url, headers=headers)
+                items = json.loads(r.content)
+                break
+            except Exception:
+                session = SgRequests()
+                pass
+            x = x+1
+            if x == 10:
+                print(url)
+                break
         
         for item in items:
             store = item["storeId"]
