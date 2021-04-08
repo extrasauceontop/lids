@@ -57,6 +57,7 @@ def fetch_data():
             x = x+1
             if x == 10:
                 print(url)
+                print(r.content)
                 break
         
         for item in items:
